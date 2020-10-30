@@ -1,3 +1,4 @@
+%Zahara Wang zahara.wang@emory.edu
 % Removing EOG artifacts from EEG signals
 %
 % BMI500 Course
