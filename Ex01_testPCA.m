@@ -1,5 +1,6 @@
 % Principal component analysis
 %
+% Melanie Zhao: zhiyue.zhao@emory.edu
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
 %           By: R. Sameni
