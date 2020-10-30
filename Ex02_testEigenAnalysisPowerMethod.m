@@ -12,6 +12,12 @@
 %       https://gitlab.com/rsameni/OSET.git
 %
 
+
+%note that eigs gives you the first few eigenvectors. i guess we can
+%estimate this 
+%  i think we have to do power method of slide 57 
+%keep doing this to converge onto the eigen vectors 
+%  this converges onto the first eigen vector.
 close all;
 clear
 clc;

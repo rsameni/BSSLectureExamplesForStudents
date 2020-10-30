@@ -81,15 +81,6 @@ N_eighs_to_keep = find(x_partial_energy <= th,1,'last')
 x_compressed = V(:,N - N_eighs_to_keep + 1:N)*y(N-N_eighs_to_keep + 1:N,:); 
 
 
-t = (0: T-1)/fs; 
-
-for ch = 1:N
-   figure 
-   hold on 
-   plot(t,x(ch,:)); 
-   plot(t,x_compressed(ch,:));
-   legend(['channel ',num2str(ch),'compressed')])
-end
 
 
 
