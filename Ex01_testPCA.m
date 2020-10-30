@@ -1,3 +1,4 @@
+% Shaojun Yu (shaojun.yu@emory.edu)
 % Principal component analysis
 %
 % BMI500 Course
@@ -35,4 +36,69 @@ end
 
 N = size(x, 1); % The number of channels
 T = size(x, 2); % The number of samples per channel
+
+% Plot the channels
+PlotECG(x, 4, 'b', fs, 'Raw data channels');
+
+% Remove the channel means
+x_demanded = x - mean(x, 2) * ones(1, size(x, 2));
+
+
+Cx = cov(x_demanded');
+
+[V, D] = eig(Cx, 'vector');
+
+figure
+subplot(121)
+plot(D(end:-1:1));
+grid
+xlabel('Index');
+ylabel('Eigenvalue');
+title('Eigenvalues in linear scale');
+subplot(122)
+plot(10*log10(D(end:-1:1)/D(end)));  % log-normalize
+grid
+xlabel('Index');
+ylabel('Eigenvalue ratios in dB');
+title('Normalized eigenvalues in log scale');
+
+x_var = var(x_demanded, [], 2);
+x_var2 = diag(Cx);  % the variance
+
+y = V' * x_demanded;
+Cy = cov(y');
+y_var = diag(Cy);
+
+% check total engegy match
+x_total_energy = sum(x_var);
+Cx_trace = trace(Cx);
+eigenvalue_sum = sum(D);
+Cy_trace = trace(Cy);
+
+% partial energy
+x_partial_energy = 100.0 * cumsum(D(end:-1:1))./x_total_energy;
+
+% cut off 
+th = 99.9;
+N_eigs_to_keep = find(x_partial_energy <= th, 1, 'last');
+
+% find a compressed version of x
+x_compressed = V(:, N-N_eigs_to_keep+1:N) * y(N-N_eigs_to_keep+1:N, :);
+
+
+t = (0: T-1)/fs;
+for ch = 1:N
+    figure
+    hold on
+    plot(t, x(ch, :));
+    plot(t, x_compressed(ch, :));
+    legend(['channel' num2str(ch)], 'compressed');
+    grid
+end
+
+
+
+
+
+
 

@@ -21,6 +21,6 @@ N = 3;
 T = 1000;
 a = randn(1, N);
 x = diag(a) * randn(N, T);
-% Cx = x * x';
+Cx = x * x';
 Cx = cov(x');
 

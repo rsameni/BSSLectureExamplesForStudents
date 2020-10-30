@@ -1,4 +1,4 @@
-% Extracting fetal ECG signals using various ICA algorithms
+f% Extracting fetal ECG signals using various ICA algorithms
 %
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
