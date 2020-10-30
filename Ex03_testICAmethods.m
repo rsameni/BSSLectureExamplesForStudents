@@ -1,5 +1,4 @@
-% Independent component analysis using classical methods
-%
+% Boyang Bao (bbao5@emory.edu)
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
 %           By: R. Sameni
@@ -16,7 +15,7 @@ clc
 clear
 close all
 
-example = 3;
+example = 1; %change here with 1 or 3
 switch example
     case 1 % A sample EEG from the OSET package
         load EEGdata textdata data % Load a sample EEG signal
@@ -45,4 +44,34 @@ end
 
 N = size(x, 1); % The number of channels
 T = size(x, 2); % The number of samples per channel
+
+PlotECG(x, 4, 'b', fs, 'Raw data channels');
+
+approach = "symm";  % defl: extract component one by one
+g = "tanh";
+lastEigfastica = N; % PCA stage
+numOfIC = N; % ICA stage
+interactivePCA = 'off';
+[s_fastica, A_fastica, W_fastica] = fastica(x, 'approach', approach, ...
+        'g', g, 'lastEig', lastEigfastica, 'numOfIC', numOfIC, ...
+        'interactivePCA', interactivePCA);
+    
+Cs = cov(s_fastica');
+    
+% JADE
+lastEigJADE = N;
+W_JADE = jadeR(x, lastEigJADE);
+s_jade = W_JADE * x;
+
+% SOBI
+lastEigSOBI = N;
+num_cov_matrices = 100;
+[W_SOBI, s_sobi] = sobi(x, lastEigSOBI, num_cov_matrices);
+
+
+PlotECG(s_fastica, 4, 'r', fs, 'Fastica');
+
+PlotECG(s_jade, 4, 'k', fs, 'JADE');
+
+PlotECG(s_sobi, 4, 'b', fs, 'SOBI');
 
