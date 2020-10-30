@@ -1,5 +1,5 @@
 % Extracting fetal ECG signals using various ICA algorithms
-%
+% Wenjing Ma (wenjing.ma@emory.edu)
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
 %           By: R. Sameni
