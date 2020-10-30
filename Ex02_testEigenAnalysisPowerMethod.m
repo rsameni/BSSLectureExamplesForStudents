@@ -1,4 +1,5 @@
 % The power method for eigenvalue decomposition
+% Wenjing Ma (wenjing.ma@emory.edu)
 %
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
@@ -23,4 +24,11 @@ a = randn(1, N);
 x = diag(a) * randn(N, T);
 % Cx = x * x';
 Cx = cov(x');
+
+% HW, power method to calculate eigenvalue decomposition
+% eigs function, for high-dimensional data
+% the algorithm is in the slides (power method for EVD)
+
+
+
 
