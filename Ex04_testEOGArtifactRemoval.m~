@@ -35,15 +35,11 @@ t = (0 : T - 1)/fs;
 approach = 'symm'; 
 g = 'tanh'; 
 lastEigfastica = N; 
-numOfIC= N; 
+numOfIC N; 
 interactivePA = ' off'; 
-[ s_fastica, A_fatsica] = fastica(x,'approach',approach,'g',g,'lastEig',lastEigfastica,'numOfIC',numOfIC,'interactivePCA','off')
+[ s_fastica, A_fatsica] = fastica(x,'approach',approach,'g',g,'lastEig',lastEigfastica,'numOfIC',numOfIC,'interactive','off')
 Cs = cov(s_fastica'); 
 lastEigJADE = N; 
 W_JADE = jadeR(x,lastEigJade); 
-s_jade = W_JADE * x; 
-lastEigSOBI = N; 
-num_cov_matrices = 100; 
-[W_SOBI,s_sobi] = sobi(x,lastEigSOBI,num_cov_matrices); 
-PlotECG(s_fastica,4,'r',fs,' Sources extracted by fatsica')
+s_jade = W
 
