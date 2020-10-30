@@ -24,3 +24,4 @@ x = diag(a) * randn(N, T);
 % Cx = x * x';
 Cx = cov(x');
 
+% check on eigen value decomposition work 
