@@ -1,3 +1,4 @@
+%Zahara Wang zahara.wang@emory.edu
 % Extracting fetal ECG signals using various ICA algorithms
 %
 % BMI500 Course

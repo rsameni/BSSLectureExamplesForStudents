@@ -1,4 +1,5 @@
-% Principal component analysis
+%Zahara Wang zahara.wang@emory.edu
+%Principal component analysis
 %
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
@@ -32,6 +33,9 @@ switch example
     otherwise
         error('unknown example');
 end
+x_demeaned = x - mean(x,2)*ones(1,size(x,2));
+Cx =  cov(x_demeaned');
+[V, D] = eig(Cx, 'vector');
 
 N = size(x, 1); % The number of channels
 T = size(x, 2); % The number of samples per channel

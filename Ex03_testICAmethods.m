@@ -1,3 +1,4 @@
+%Zahara Wang zahara.wang@emory.edu
 % Independent component analysis using classical methods
 %
 % BMI500 Course
@@ -46,3 +47,13 @@ end
 N = size(x, 1); % The number of channels
 T = size(x, 2); % The number of samples per channel
 
+approach = "symm"; 
+g = "tanh";
+lastEigfastica = N; 
+numOfIC = N; 
+interactivePCA = 'off';
+[s_fastica, A_fastica, W_fastica] = fastica(x, 'approach', approach, ...
+        'g', g, 'lastEig', lastEigfastica, 'numOfIC', numOfIC, ...
+        'interactivePCA', interactivePCA);
+    
+Cs = cov(s_fastica');

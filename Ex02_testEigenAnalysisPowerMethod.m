@@ -1,3 +1,4 @@
+%Zahara Wang zahara.wang@emory.edu
 % The power method for eigenvalue decomposition
 %
 % BMI500 Course
@@ -24,3 +25,11 @@ x = diag(a) * randn(N, T);
 % Cx = x * x';
 Cx = cov(x');
 
+[V,D] = eig(Cx)
+
+Itr = 100;
+
+v0 = rand(N,1);
+v1 = EigenAnalysisPowerMethod(Cx, v0, Itr);
+scale1 = (Cx*v1) ./v1;
+lambda1 = mean(scale1);
