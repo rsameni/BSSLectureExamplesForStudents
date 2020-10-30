@@ -1,5 +1,5 @@
 % Independent component analysis using classical methods
-%
+% Jiwoong Jason Jeong
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
 %           By: R. Sameni
