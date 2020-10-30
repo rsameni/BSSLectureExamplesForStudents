@@ -1,5 +1,4 @@
-% Removing EOG artifacts from EEG signals
-%
+% Boyang Bao (bbao5@emory.edu)
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
 %           By: R. Sameni

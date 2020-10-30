@@ -28,14 +28,5 @@ Cx = cov(x');
 Itr = 100;
 
 v0 = rand(N,1);
-v1 = EigenAnalysisPowerMethod(Cx, v0, Itr);
-scale1 = (Cx*v1) ./v1;
-lambda1 = mean(scale1);
-
-C = Cx - lambda1 * (v1 * v1');
-v2 = EigenAnalysisPowerMethod(C, v0, Itr);
-scale2 = (Cx*v2)./v2;
-lambda2 = mean(scale2);
-
-C = C - mean(lambda2) * (v2 * v2');
+v1 = EigenAnalysisPowerMethod(Cx, v0, Itr)
 
