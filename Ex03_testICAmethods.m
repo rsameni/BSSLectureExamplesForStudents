@@ -30,7 +30,7 @@ switch example
         x = data(:, 2:end)'; % make the data in (channels x samples) format
         x = x - LPFilter(x, 1.0/fs); % remove the lowpass baseline
     case 3 % A synthetic signal
-        fs = 500;
+        fs = 1000; % changed fs to 1000
         len = round(3.0*fs);
         s1 = sin(2*pi*7.0/fs * (1 : len));
         s2 = 2*sin(2*pi*1.3/fs * (1 : len) + pi/7);
@@ -46,3 +46,35 @@ end
 N = size(x, 1); % The number of channels
 T = size(x, 2); % The number of samples per channel
 
+% Plot the channels
+PlotECG(x, 4, 'b', fs, 'Raw data channels');
+
+% Run fastica
+approach = 'symm'; % 'symm' or 'defl'
+g = 'skew'; % 'pow3', 'tanh', 'gauss', 'skew' % changed to different ones
+lastEigfastica = N; % PCA stage
+numOfIC = N; % ICA stage
+interactivePCA = 'off';
+[s_fastica, A_fatsica, W_fatsica] = fastica (x, 'approach', approach, 'g', g, 'lastEig', lastEigfastica, 'numOfIC', numOfIC, 'interactivePCA', interactivePCA, 'verbose', 'off', 'displayMode', 'off');
+
+% Check the covariance matrix
+Cs = cov(s_fastica');
+
+% Run JADE
+lastEigJADE = N; % PCA stage
+W_JADE = jadeR(x, lastEigJADE);
+s_jade = W_JADE * x;
+
+% Run SOBI
+lastEigSOBI = N; % PCA stage
+num_cov_matrices = 100;
+[W_SOBI, s_sobi] = sobi(x, lastEigSOBI, num_cov_matrices);
+
+% Plot the sources
+PlotECG(s_fastica, 4, 'r', fs, 'Sources extracted by fatsica');
+
+% Plot the sources
+PlotECG(s_jade, 4, 'k', fs, 'Sources extracted by JADE');
+
+% Plot the sources
+PlotECG(s_sobi, 4, 'm', fs, 'Sources extracted by SOBI');

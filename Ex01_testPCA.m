@@ -16,7 +16,7 @@ clc
 clear
 close all
 
-example = 1;
+example = 2; % just changed the test example to see the second one.
 switch example
     case 1 % Load a sample EEG signal
         load EEGdata textdata data % A sample EEG from the OSET package
@@ -28,7 +28,8 @@ switch example
         load SampleECG2 data % A sample ECG from the OSET package
         fs = 1000;
         x = data(:, 2:end)'; % make the data in (channels x samples) format
-        x = x - LPFilter(x, 1.0/fs); % remove the lowpass baseline
+        %x = x - LPFilter(x, 1.0/fs); % remove the lowpass baseline
+        %(removed lowpass filter)
     otherwise
         error('unknown example');
 end

@@ -1,5 +1,5 @@
 % Extracting fetal ECG signals using various ICA algorithms
-%
+% Jiwoong Jason Jeong
 % BMI500 Course
 % Lecture:  An Introduction to Blind Source Separation and Independent Component Analysis
 %           By: R. Sameni
@@ -13,9 +13,9 @@
 %
 
 % Uncomment the following lines to run advanced demos
-testPCAICAPiCAfECGExtraction % Call this demo from the OSET package
+%testPCAICAPiCAfECGExtraction % Call this demo from the OSET package
 % testECGICAPCAPiCAPlot1
 % testECGICAPCAPiCAPlot1
 % testAveragefECGbyDeflationAndKF
 % testICAPiCAAfterMECGCancellation % (using the deflation algorithm + Kalman filter)
-% testPCAICAPiCAfECGDenoising % (denoising using BSS and semi-BSS methods)
+testPCAICAPiCAfECGDenoising % (denoising using BSS and semi-BSS methods)
