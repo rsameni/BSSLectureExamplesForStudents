@@ -16,6 +16,7 @@ clc
 clear
 close all
 
+rng(123) %added rng number
 example = 3;
 switch example
     case 1 % A sample EEG from the OSET package
@@ -45,4 +46,43 @@ end
 
 N = size(x, 1); % The number of channels
 T = size(x, 2); % The number of samples per channel
+
+% Plot the channels
+PlotECG(x, 4, 'b', fs, 'Raw data channels');
+
+% Run fastica
+approach = 'symm'; % 'symm' or 'defl'
+g = 'skew'; % 'pow3', 'tanh', 'gauss', 'skew'
+lastEigfastica = N; % PCA stage
+numOfIC = N; % ICA stage
+interactivePCA = 'off';
+[s_fastica, A_fatsica, W_fatsica] = fastica (x, 'approach', approach, 'g', g, 'lastEig', lastEigfastica, 'numOfIC', numOfIC, 'interactivePCA', interactivePCA, 'verbose', 'off', 'displayMode', 'off');
+
+% Check the covariance matrix
+Cs = cov(s_fastica');
+
+% Run JADE
+lastEigJADE = N; % PCA stage
+W_JADE = jadeR(x, lastEigJADE);
+s_jade = W_JADE * x;
+
+% Run SOBI
+lastEigSOBI = N; % PCA stage
+num_cov_matrices = 100;
+[W_SOBI, s_sobi] = sobi(x, lastEigSOBI, num_cov_matrices);
+
+% Plot the sources
+PlotECG(s_fastica, 4, 'r', fs, 'Sources extracted by fatsica');
+
+% Plot the sources
+PlotECG(s_jade, 4, 'k', fs, 'Sources extracted by JADE');
+
+% Plot the sources
+PlotECG(s_sobi, 4, 'm', fs, 'Sources extracted by SOBI');
+
+%for this section we compared the changes  caused by different
+%appriximation approaches. We observed tanh,pow3, and skew to view a small
+%subset of variability. We notice that  tanh and po3 have the greatest
+%agreeement. Meanwhile skew produces  slightly different results 
+
 

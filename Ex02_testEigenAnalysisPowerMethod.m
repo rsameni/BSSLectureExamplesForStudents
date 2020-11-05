@@ -12,12 +12,6 @@
 %       https://gitlab.com/rsameni/OSET.git
 %
 
-
-%note that eigs gives you the first few eigenvectors. i guess we can
-%estimate this 
-%  i think we have to do power method of slide 57 
-%keep doing this to converge onto the eigen vectors 
-%  this converges onto the first eigen vector.
 close all;
 clear
 clc;
@@ -29,4 +23,30 @@ a = randn(1, N);
 x = diag(a) * randn(N, T);
 % Cx = x * x';
 Cx = cov(x');
+
+% Apply eigenvalue decomposition
+% Read 'eig' help and compare with 'eigs'
+[V,D] = eig(Cx)
+
+Itr = 20; % The number of power method iterations
+
+v0 = rand(N, 1);
+v1 = EigenAnalysisPowerMethod(Cx, v0, Itr);
+scale1 = (Cx*v1)./v1;
+lambda1 = mean(scale1)
+
+C = Cx - lambda1 * (v1 * v1');
+v2 = EigenAnalysisPowerMethod(C, v0, Itr);
+scale2 = (Cx*v2)./v2;
+lambda2 = mean(scale2)
+
+C = C - mean(lambda2) * (v2 * v2');
+v3 = EigenAnalysisPowerMethod(C, v0, Itr);
+scale3 = (Cx*v3)./v3;
+lambda3 = mean(scale3)
+
+%For thsi section we  modified the iteration accunt to see how small the
+%iteration count could get to reliably estimate the eigne value.  Around
+%the 20 iteration count we see stable levels of performance. This is a
+%simpler signal and could perhaps not generalzie to larger matrices. 
 
