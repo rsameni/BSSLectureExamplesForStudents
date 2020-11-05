@@ -28,7 +28,7 @@ Cx = cov(x');
 % Read 'eig' help and compare with 'eigs'
 [V,D] = eig(Cx)
 
-Itr = 100; % The number of power method iterations (changed to 1000)
+Itr = 1000; % The number of power method iterations (changed to 1000)
 
 v0 = rand(N, 1);
 v1 = EigenAnalysisPowerMethod(Cx, v0, Itr);

@@ -34,7 +34,9 @@ easier to see the harmonic signals.
 ###### Ex02
 It was a simple power method of analyzing the eigenvalues so I just changed
 the number of channels to 2. As expected, changing the number of channels
-changes it to a 2x2 matrix and 2x1 eigenvector.
+changes it to a 2x2 matrix and 2x1 eigenvector. Additionally, the number of
+iterations was changed to 1000. The accuracy of the power method increased
+as the number of iterations increased, which was expected.
 ###### Ex03
 I only changed the sampling frequency (fs) from 500 to 1000 and the results
 were changed as we expected. The signal length was doubled from 1,500 to 
