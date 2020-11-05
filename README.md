@@ -1,12 +1,13 @@
 # question 1 
-A) include the writting section of letters 
+A)
+
+![alt text](./hand_work_eigen.png)
 
 
 B) 
 
 We obtain similar eigenvalues to the one obtained  by matlab eig. For the eigenvector we had some initial diferences when it comes to the final values 
-We were abled to obtain similar direction vectors but their individiual values are different. We ere able to rectify this by normalizing the vectors to 
-unit norm. The script hw.m also includes the 
+We were abled to obtain similar direction vectors but their individiual values are different. We ere able to rectify this by normalizing the vectors to unit norm. The script hw.m also includes the code for deriving the eigen vectors by "hand" using symbolic math solvers.
 
 
 
